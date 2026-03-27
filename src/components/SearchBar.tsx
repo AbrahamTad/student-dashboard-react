@@ -9,11 +9,13 @@ export default function SearchBar({ onSearch }: any) {
   };
 
   return (
-    <input
-      type="text"
-      placeholder="Search course..."
-      value={search}
-      onChange={handleChange}
-    />
+    <div>
+      <input
+        type="text"
+        placeholder="Search course..."
+        value={search}
+        onChange={handleChange}
+      />
+    </div>
   );
 }

@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import Navbar from "./components/Navbar";
+import CourseDetails from "./pages/CourseDetails";
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/courses" element={<Courses />} />
+        <Route path="/courses/:id" element={<CourseDetails />} />
       </Routes>
     </BrowserRouter>
   );
