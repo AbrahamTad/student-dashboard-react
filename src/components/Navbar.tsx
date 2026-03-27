@@ -2,14 +2,15 @@ import { Link } from "react-router";
 import styled from "styled-components";
 
 const Nav = styled.nav`
-  padding: 15px;
-  background: #1e293b;
+  background: #0f172a;
+  padding: 16px;
 `;
 
 const NavLink = styled(Link)`
   color: white;
-  margin-right: 15px;
+  margin-right: 20px;
   text-decoration: none;
+  font-weight: bold;
 `;
 
 export default function Navbar() {

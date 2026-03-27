@@ -1,4 +1,13 @@
+import styled from "styled-components";
 import { useState } from "react";
+
+const Input = styled.input`
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+`;
 
 export default function SearchBar({ onSearch }: any) {
   const [search, setSearch] = useState("");
@@ -9,13 +18,10 @@ export default function SearchBar({ onSearch }: any) {
   };
 
   return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search course..."
-        value={search}
-        onChange={handleChange}
-      />
-    </div>
+    <Input
+      placeholder="Search course..."
+      value={search}
+      onChange={handleChange}
+    />
   );
 }

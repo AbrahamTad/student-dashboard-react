@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import CourseCard from "../components/CourseCard";
 import SearchBar from "../components/SearchBar";
+import Layout from "../components/Layout";
 
 export default function Courses() {
   const [courseList, setCourseList] = useState([]);
@@ -24,12 +25,12 @@ export default function Courses() {
   };
 
   return (
-    <div>
+    <Layout>
       <SearchBar onSearch={handleSearch} />
 
       {courseList.map((course: any) => (
         <CourseCard key={course.id} course={course} />
       ))}
-    </div>
+    </Layout>
   );
 }
