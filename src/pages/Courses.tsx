@@ -6,6 +6,7 @@ import Layout from "../components/Layout";
 export default function Courses() {
   const [courseList, setCourseList] = useState([]);
   const [allCourses, setAllCourses] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -13,6 +14,7 @@ export default function Courses() {
       .then((data) => {
         setCourseList(data);
         setAllCourses(data);
+        setLoading(false);
       });
   }, []);
 
@@ -23,9 +25,11 @@ export default function Courses() {
 
     setCourseList(filtered);
   };
+  if (loading) return <Layout>Loading courses...</Layout>;
 
   return (
     <Layout>
+      <h1> Student Courses</h1>
       <SearchBar onSearch={handleSearch} />
 
       {courseList.map((course: any) => (
