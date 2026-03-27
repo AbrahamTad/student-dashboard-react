@@ -1,14 +1,23 @@
-import { useState } from "react";
-import { courses } from "../data/courses";
+import { useState, useEffect } from "react";
 import CourseCard from "../components/CourseCard";
 import SearchBar from "../components/SearchBar";
 
 export default function Courses() {
-  const [courseList, setCourseList] = useState(courses);
+  const [courseList, setCourseList] = useState([]);
+  const [allCourses, setAllCourses] = useState([]);
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => {
+        setCourseList(data);
+        setAllCourses(data);
+      });
+  }, []);
 
   const handleSearch = (text: string) => {
-    const filtered = courses.filter((course) =>
-      course.title.toLowerCase().includes(text.toLowerCase()),
+    const filtered = allCourses.filter((course: any) =>
+      course.name.toLowerCase().includes(text.toLowerCase()),
     );
 
     setCourseList(filtered);
@@ -18,7 +27,7 @@ export default function Courses() {
     <div>
       <SearchBar onSearch={handleSearch} />
 
-      {courseList.map((course) => (
+      {courseList.map((course: any) => (
         <CourseCard key={course.id} course={course} />
       ))}
     </div>
