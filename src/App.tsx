@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import Navbar from "./components/Navbar";
 import CourseDetails from "./pages/CourseDetails";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:id" element={<CourseDetails />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
