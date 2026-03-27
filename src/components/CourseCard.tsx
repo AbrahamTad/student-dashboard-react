@@ -12,15 +12,29 @@ const Title = styled.h3`
   margin: 0;
 `;
 
-const Email = styled.p`
-  color: gray;
+const Info = styled.p`
+  color: #555;
 `;
+
+const courseTitles = [
+  "React Fundamentals",
+  "TypeScript Basics",
+  "Advanced JavaScript",
+  "NodeJS Backend",
+  "Frontend Architecture",
+  "API Development",
+  "UI Design",
+  "Testing React",
+  "Performance Optimization",
+  "Web Security",
+];
 
 export default function CourseCard({ course }: any) {
   return (
     <Card>
-      <Title>{course.name}</Title>
-      <Email>{course.email}</Email>
+      <Title>{courseTitles[course.id - 1]}</Title>
+      <Info>Instructor: {course.name}</Info>
+      <Info>Email: {course.email}</Info>
     </Card>
   );
 }
