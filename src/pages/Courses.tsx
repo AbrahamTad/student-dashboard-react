@@ -2,11 +2,19 @@ import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import styled from "styled-components";
 
+const Search = styled.input`
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  font-size: 16px;
+`;
+
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
-  margin-top: 20px;
 `;
 
 const CourseCard = styled.div`
@@ -41,6 +49,7 @@ const Credits = styled.p`
 
 export default function Courses() {
   const [courses, setCourses] = useState<any[]>([]);
+  const [filtered, setFiltered] = useState<any[]>([]);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -67,15 +76,30 @@ export default function Courses() {
         }));
 
         setCourses(mappedCourses);
+        setFiltered(mappedCourses);
       });
   }, []);
+
+  const handleSearch = (e: any) => {
+    const text = e.target.value.toLowerCase();
+
+    const filteredCourses = courses.filter(
+      (course) =>
+        course.title.toLowerCase().includes(text) ||
+        course.teacher.toLowerCase().includes(text),
+    );
+
+    setFiltered(filteredCourses);
+  };
 
   return (
     <Layout>
       <h1>Kurser</h1>
 
+      <Search placeholder="Sök kurser..." onChange={handleSearch} />
+
       <Grid>
-        {courses.map((course) => (
+        {filtered.map((course) => (
           <CourseCard key={course.id}>
             <Title>FED25G - {course.title}</Title>
             <Credits>{course.credits}</Credits>
