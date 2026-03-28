@@ -1,21 +1,16 @@
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import styled from "styled-components";
+import { Link } from "react-router";
 
-const Title = styled.h1`
-  text-align: center;
-`;
-
-const Sub = styled.p`
-  text-align: center;
-  color: gray;
+const Header = styled.div`
+  margin-bottom: 20px;
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
-  margin-top: 30px;
 `;
 
 const Card = styled.div`
@@ -35,8 +30,18 @@ const ProgressFill = styled.div`
   background: #0f172a;
   width: 75%;
   color: white;
-  padding: 5px;
+  padding: 6px;
   text-align: center;
+`;
+
+const Button = styled(Link)`
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #0f172a;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
 `;
 
 export default function Home() {
@@ -54,18 +59,22 @@ export default function Home() {
 
   return (
     <Layout>
-      <Title>Student Dashboard</Title>
-      <Sub>Welcome back! Today is {today}</Sub>
+      <Header>
+        <h1>🎓 Student Dashboard</h1>
+        <p>Welcome back! Today is {today}</p>
+      </Header>
 
       <Grid>
         <Card>
-          <h3>📚 Courses</h3>
-          <p>10 Available Courses</p>
+          <h3>👤 Student</h3>
+          <p>Name: Abraham</p>
+          <p>Program: Frontend Development</p>
         </Card>
 
         <Card>
-          <h3>📝 Assignments</h3>
-          <p>3 Pending</p>
+          <h3>📚 Courses</h3>
+          <p>10 Available Courses</p>
+          <Button to="/courses">View Courses</Button>
         </Card>
 
         <Card>
@@ -79,12 +88,22 @@ export default function Home() {
           <h3>🌤 Weather</h3>
           {weather ? (
             <>
-              <p>Temp: {weather.temperature}°C</p>
+              <p>Temperature: {weather.temperature}°C</p>
               <p>Wind: {weather.windspeed} km/h</p>
             </>
           ) : (
             <p>Loading...</p>
           )}
+        </Card>
+
+        <Card>
+          <h3>📝 Assignments</h3>
+          <p>3 pending tasks</p>
+        </Card>
+
+        <Card>
+          <h3>⚡ Quick Actions</h3>
+          <Button to="/courses">Browse Courses</Button>
         </Card>
       </Grid>
     </Layout>
