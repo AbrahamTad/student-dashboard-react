@@ -10,9 +10,5 @@ const FooterWrapper = styled.footer`
 `;
 
 export default function Footer() {
-  return (
-    <FooterWrapper>
-      Student Dashboard © 2026 | Built with React & Styled Components
-    </FooterWrapper>
-  );
+  return <FooterWrapper>Student Dashboard © 2026</FooterWrapper>;
 }

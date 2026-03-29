@@ -1,6 +1,8 @@
+// navigation bar shown on every page
 import { Link } from "react-router";
 import styled from "styled-components";
 
+// Styled nav bar with dark background
 const Nav = styled.nav`
   background: #0f172a;
   padding: 16px 24px;
@@ -9,6 +11,7 @@ const Nav = styled.nav`
   align-items: center;
 `;
 
+// Styled navigation link with hover effect
 const NavLink = styled(Link)`
   color: #94a3b8;
   margin-right: 4px;
@@ -25,6 +28,7 @@ const NavLink = styled(Link)`
   }
 `;
 
+// Logo text on the left side of the navbar
 const Logo = styled.span`
   color: #60a5fa;
   font-weight: 700;
