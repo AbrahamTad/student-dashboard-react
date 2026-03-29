@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
+import SearchBar from "../components/SearchBar";
 import styled from "styled-components";
-
-const Search = styled.input`
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
-  font-size: 16px;
-`;
 
 const Grid = styled.div`
   display: grid;
@@ -95,8 +87,7 @@ export default function Courses() {
   return (
     <Layout>
       <h1>Kurser</h1>
-
-      <Search placeholder="Sök kurser..." onChange={handleSearch} />
+      <SearchBar onChange={handleSearch} />
 
       <Grid>
         {filtered.map((course) => (
