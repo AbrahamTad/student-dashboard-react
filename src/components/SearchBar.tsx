@@ -1,5 +1,7 @@
+// Reusable search input component used on the Courses page
 import styled from "styled-components";
 
+// Styled input with focus highlight effect
 const Input = styled.input`
   width: 100%;
   padding: 12px;
@@ -9,6 +11,7 @@ const Input = styled.input`
   font-size: 16px;
   box-sizing: border-box;
 
+  /* Highlight border and glow when user clicks the input */
   &:focus {
     outline: none;
     border-color: #7ac27a;
@@ -16,6 +19,7 @@ const Input = styled.input`
   }
 `;
 
+// Props: onChange - callback function passed from parent (Courses page)
 export default function SearchBar({
   onChange,
 }: {

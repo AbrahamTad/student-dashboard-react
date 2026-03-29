@@ -1,5 +1,7 @@
+// Displays a single course as a styled card
 import styled from "styled-components";
 
+// Card wrapper with dynamic background color passed as a prop
 const CourseCardWrapper = styled.div<{ color: string }>`
   background: ${(props) => props.color};
   border: 2px solid #7ac27a;
@@ -8,6 +10,7 @@ const CourseCardWrapper = styled.div<{ color: string }>`
   cursor: pointer;
   transition: 0.2s;
 
+  /* Lift effect on hover */
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
@@ -30,6 +33,7 @@ const Credits = styled.p`
   color: #0f172a;
 `;
 
+// Each course gets a different background color based on its ID
 const colors = [
   "#dff5e1",
   "#e1f0ff",
@@ -43,6 +47,7 @@ const colors = [
   "#e3f2fd",
 ];
 
+// Course title names mapped by index (since API doesn't have real course names)
 const courseTitles = [
   "React Fundamentals",
   "TypeScript Basics",
@@ -56,7 +61,9 @@ const courseTitles = [
   "Web Security",
 ];
 
+// Props: course - a single course object from the JSONPlaceholder API
 export default function CourseCard({ course }: any) {
+  // Use modulo to safely wrap around if there are more courses than titles/colors
   const title = courseTitles[(course.id - 1) % courseTitles.length];
   const color = colors[(course.id - 1) % colors.length];
 
@@ -64,6 +71,7 @@ export default function CourseCard({ course }: any) {
     <CourseCardWrapper color={color}>
       <Title>FED25G - {title}</Title>
       <Credits>{10 + course.id * 5} hp</Credits>
+      {/* course.name comes from the JSONPlaceholder users API */}
       <Info>Teacher: {course.name}</Info>
     </CourseCardWrapper>
   );
