@@ -2,7 +2,7 @@
 
 En webbapplikation byggd med React och TypeScript där studenter kan se sina kurser, söka bland dem och hålla koll på inlämningsuppgifter.
 
-🔗 [Live Demo]()
+🔗 [Live Demo](https://student-dashboard1f.netlify.app/)
 
 ---
 

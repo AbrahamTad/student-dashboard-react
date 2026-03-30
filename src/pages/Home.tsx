@@ -3,10 +3,11 @@ import Layout from "../components/Layout";
 import styled from "styled-components";
 import { Link } from "react-router";
 
+// Wraps the top heading and date
 const Header = styled.div`
   margin-bottom: 20px;
 `;
-
+// Responsive grid that auto-fits cards based on available width
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -45,8 +46,10 @@ const Button = styled(Link)`
 `;
 
 export default function Home() {
+  // Holds the current weather data fetched from Open-Meteo; null until loaded
   const [weather, setWeather] = useState<any>(null);
 
+  // Fetch live weather once on mount (Gothenburg coordinates)
   useEffect(() => {
     fetch(
       "https://api.open-meteo.com/v1/forecast?latitude=57.7&longitude=12.3&current_weather=true",
@@ -59,6 +62,7 @@ export default function Home() {
 
   return (
     <Layout>
+      {/* Page heading and current date */}
       <Header>
         <h1>🎓 Student Dashboard</h1>
         <p>Welcome back! Today is {today}</p>
