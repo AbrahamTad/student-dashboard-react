@@ -1,7 +1,11 @@
-// Displays a single course as a styled card
+// CourseCard.tsx
+// Reusable card component
+// Clickable → navigates to CourseDetails
+
+import { Link } from "react-router";
 import styled from "styled-components";
 
-// Card wrapper with dynamic background color passed as a prop
+// card wrapper
 const CourseCardWrapper = styled.div<{ color: string }>`
   background: ${(props) => props.color};
   border: 2px solid #7ac27a;
@@ -10,7 +14,6 @@ const CourseCardWrapper = styled.div<{ color: string }>`
   cursor: pointer;
   transition: 0.2s;
 
-  /* Lift effect on hover */
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
@@ -33,7 +36,7 @@ const Credits = styled.p`
   color: #0f172a;
 `;
 
-// Each course gets a different background color based on its ID
+// background colors
 const colors = [
   "#dff5e1",
   "#e1f0ff",
@@ -47,32 +50,18 @@ const colors = [
   "#e3f2fd",
 ];
 
-// Course title names mapped by index (since API doesn't have real course names)
-const courseTitles = [
-  "React Fundamentals",
-  "TypeScript Basics",
-  "Advanced JavaScript",
-  "NodeJS Backend",
-  "Frontend Architecture",
-  "API Development",
-  "UI Design",
-  "Testing React",
-  "Performance Optimization",
-  "Web Security",
-];
-
-// Props: course - a single course object from the JSONPlaceholder API
 export default function CourseCard({ course }: any) {
-  // Use modulo to safely wrap around if there are more courses than titles/colors
-  const title = courseTitles[(course.id - 1) % courseTitles.length];
+  // select color based on course id
   const color = colors[(course.id - 1) % colors.length];
 
   return (
-    <CourseCardWrapper color={color}>
-      <Title>FED25G - {title}</Title>
-      <Credits>{10 + course.id * 5} hp</Credits>
-      {/* course.name comes from the JSONPlaceholder users API */}
-      <Info>Teacher: {course.name}</Info>
-    </CourseCardWrapper>
+    // clickable navigation
+    <Link to={`/courses/${course.id}`} style={{ textDecoration: "none" }}>
+      <CourseCardWrapper color={color}>
+        <Title>FED25G - {course.title}</Title>
+        <Credits>{course.credits}</Credits>
+        <Info>Teacher: {course.teacher}</Info>
+      </CourseCardWrapper>
+    </Link>
   );
 }
