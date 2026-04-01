@@ -1,67 +1,87 @@
-// CourseCard.tsx
-// Reusable card component
-// Clickable → navigates to CourseDetails
+// Courses.tsx
+// Fetches course data from API
+// Displays courses in a grid
+// Each course is clickable → navigates to CourseDetails
 
-import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import Layout from "../components/Layout";
+import SearchBar from "../components/SearchBar";
+import CourseCard from "../components/CourseCard"; // reusable card component
 import styled from "styled-components";
 
-// card wrapper
-const CourseCardWrapper = styled.div<{ color: string }>`
-  background: ${(props) => props.color};
-  border: 2px solid #7ac27a;
-  padding: 20px;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: 0.2s;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  }
+// Responsive grid layout
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
 `;
 
-const Title = styled.h3`
-  margin: 0;
-  margin-bottom: 8px;
-`;
+export default function Courses() {
+  // full course list from API
+  const [courses, setCourses] = useState<any[]>([]);
 
-const Info = styled.p`
-  margin: 0;
-  color: #444;
-`;
+  // filtered courses (used for search)
+  const [filtered, setFiltered] = useState<any[]>([]);
 
-const Credits = styled.p`
-  margin: 0;
-  font-weight: bold;
-  color: #0f172a;
-`;
+  // Fetch users from JSONPlaceholder
+  // convert users → courses
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then((res) => res.json())
+      .then((data) => {
+        // titles mapped to each user
+        const courseTitles = [
+          "JavaScript - Advanced",
+          "React Fundamentals",
+          "TypeScript Basics",
+          "NodeJS Backend",
+          "Frontend Architecture",
+          "API Development",
+          "UI Design",
+          "Testing React",
+          "Performance Optimization",
+          "Web Security",
+        ];
 
-// background colors
-const colors = [
-  "#dff5e1",
-  "#e1f0ff",
-  "#fff4d6",
-  "#fbe4ff",
-  "#ffe4e4",
-  "#e4fff7",
-  "#f0e4ff",
-  "#fff0f0",
-  "#e8f5e9",
-  "#e3f2fd",
-];
+        // map API users → course objects
+        const mappedCourses = data.map((user: any, index: number) => ({
+          id: user.id,
+          title: courseTitles[index],
+          teacher: user.name,
+          credits: `${10 + index * 5} hp`,
+        }));
 
-export default function CourseCard({ course }: any) {
-  // select color based on course id
-  const color = colors[(course.id - 1) % colors.length];
+        setCourses(mappedCourses);
+        setFiltered(mappedCourses);
+      });
+  }, []);
+
+  // search handler
+  const handleSearch = (e: any) => {
+    const text = e.target.value.toLowerCase();
+
+    const filteredCourses = courses.filter(
+      (course) =>
+        course.title.toLowerCase().includes(text) ||
+        course.teacher.toLowerCase().includes(text),
+    );
+
+    setFiltered(filteredCourses);
+  };
 
   return (
-    // clickable navigation
-    <Link to={`/courses/${course.id}`} style={{ textDecoration: "none" }}>
-      <CourseCardWrapper color={color}>
-        <Title>FED25G - {course.title}</Title>
-        <Credits>{course.credits}</Credits>
-        <Info>Teacher: {course.teacher}</Info>
-      </CourseCardWrapper>
-    </Link>
+    <Layout>
+      <h1>Kurser</h1>
+
+      {/* Search input */}
+      <SearchBar onChange={handleSearch} />
+
+      {/* Courses Grid */}
+      <Grid>
+        {filtered.map((course) => (
+          <CourseCard key={course.id} course={course} />
+        ))}
+      </Grid>
+    </Layout>
   );
 }
