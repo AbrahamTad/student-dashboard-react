@@ -3,3 +3,4 @@ export const courses = [
   { id: 2, title: "TypeScript", teacher: "Isak" },
   { id: 3, title: "NodeJS", teacher: "Mikael" },
 ];
+

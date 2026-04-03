@@ -36,7 +36,7 @@ const Credits = styled.p`
   color: #0f172a;
 `;
 
-// background colors
+// background colors array (cycle through 10 colors based on course id) for visual variety
 const colors = [
   "#dff5e1",
   "#e1f0ff",

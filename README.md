@@ -4,6 +4,10 @@ En webbapplikation byggd med React och TypeScript där studenter kan se sina kur
 
 🔗 [Live Demo](https://student-dashboard1f.netlify.app/)
 
+
+GitHub:  
+https://github.com/AbrahamTad/student-dashboard-react.git
+
 ---
 
 ## Beskrivning
@@ -14,12 +18,12 @@ Jag byggde det här projektet som en individuell inlämning i kursen JavaScript 
 
 ## Tekniker
 
-- React 18 + TypeScript
-- React Router – för navigering utan sidladdning
-- Styled-Components – CSS skrivet direkt i komponenterna
-- Vite – byggverktyg
-- JSONPlaceholder API – extern data för kurser och uppgifter
-- Open Meteo API – väderdata på startsidan
+- React + TypeScript  
+- React Router  
+- Styled-components(CSS i JS)
+- Vite  
+- JSONPlaceholder API  
+- Open Meteo API  
 
 ---
 
@@ -71,7 +75,7 @@ npm run build
 - [x] Git och GitHub har använts genom hela projektet
 - [x] README.md finns med titel, beskrivning, instruktioner och demolänk
 - [x] Uppgiften lämnas in i tid
-- [ ] Muntlig presentation genomförd
+- [x] Muntlig presentation genomförd
 
 ### Väl Godkänt (VG)
 

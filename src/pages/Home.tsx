@@ -102,7 +102,7 @@ export default function Home() {
 
         <Card>
           <h3>📝 Assignments</h3>
-          <p>3 pending tasks</p>
+          <p>9 pending tasks</p>
         </Card>
 
         <Card>
